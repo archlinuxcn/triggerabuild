@@ -19,7 +19,7 @@ def lilac_run(pkgs):
 
   logger.info('build packages: %r', pkgs)
   # cmd = ['flock', config.LILAC_LOCK, 'sleep', str(len(pkgs) * 10)]
-  cmd = [config.LILAC_BIN] + pkgs
+  cmd = [config.LILAC_BIN] + list(pkgs)
   subprocess.check_call(cmd, stdin = subprocess.DEVNULL)
   logger.info('build done.')
 

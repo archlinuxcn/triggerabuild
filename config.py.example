@@ -6,6 +6,7 @@ FERNET_KEY = b'xxxxxxxx'
 DB_URL = 'postgresql:///'
 LILAC_LOCK = Path('~/.lilac/.lock').expanduser()
 LILAC_REPO = Path('.../archlinuxcn').expanduser()
+LILAC_BIN = Path('~/soft/lilac/lilac').expanduser()
 
 CLIENT_ID = '11111111111111111111'
 CLIENT_SECRET = '2222222222222222222222222222222222222222'
