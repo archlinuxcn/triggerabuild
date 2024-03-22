@@ -40,7 +40,7 @@ async def github_login(request):
   if not code:
     url = URL('https://github.com/login/oauth/authorize') % {
       'client_id': config.CLIENT_ID,
-      'redirect_uri': 'http://127.0.0.1:9008/triggerabuild/login',
+      'redirect_uri': f'{request.scheme}://{request.host}/triggerabuild/login',
       'scope': 'read:org',
     }
     raise web.HTTPFound(str(url))
