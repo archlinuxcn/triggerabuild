@@ -1,0 +1,10 @@
+[Unit]
+Description=worker for triggerabuild
+
+[Service]
+Type=exec
+ExecStart=python -m worker.main
+WorkingDirectory=%h/soft/triggerabuild
+
+[Install]
+WantedBy=default.target

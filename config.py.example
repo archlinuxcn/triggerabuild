@@ -1,0 +1,14 @@
+from pathlib import Path
+
+REPODIR = Path('.../archlinuxcn').expanduser()
+# fernet.Fernet.generate_key()
+FERNET_KEY = b'xxxxxxxx'
+DB_URL = 'postgresql:///'
+LILAC_LOCK = Path('~/.lilac/.lock').expanduser()
+LILAC_REPO = Path('.../archlinuxcn').expanduser()
+
+CLIENT_ID = '11111111111111111111'
+CLIENT_SECRET = '2222222222222222222222222222222222222222'
+TARGET_ORG = 'myorg'
+
+# vim: se ft=python:

@@ -1,0 +1,10 @@
+[Unit]
+Description=HTTP service for triggerabuild
+
+[Service]
+Type=exec
+ExecStart=python -m api.main
+WorkingDirectory=%h/soft/triggerabuild
+
+[Install]
+WantedBy=default.target
