@@ -63,7 +63,7 @@
 <main>
 {#if info}
   {#if info.lilac == "running"}
-    <p>lilac 正在运行（<a href="https://build.archlinuxcn.org/~imlonghao/current/">查看状态</a>）。</p>
+    <p>lilac 正在运行（<a href="/~imlonghao/current/">查看状态</a>）。</p>
   {:else if info.lilac == "conflict"}
     <p>lilac 因为 git 仓库而无法运行，请等待手动处理。</p>
   {:else if info.lilac == "sleeping"}
