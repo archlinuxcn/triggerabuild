@@ -5,6 +5,7 @@ Description=worker for triggerabuild
 Type=exec
 ExecStart=python -m worker.main
 WorkingDirectory=%h/soft/triggerabuild
+Restart=on-failure
 
 [Install]
 WantedBy=default.target
