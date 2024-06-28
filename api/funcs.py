@@ -20,7 +20,7 @@ async def get_lilac_state(lock, repo):
 async def get_queued_packages(db):
   async with db.acquire() as conn, conn.transaction():
     rs = await conn.fetch('select pkgbase from to_build')
-    ret = list(set(r[0] for r in rs))
+    ret = list(set(r[0].split(':', 1)[0] for r in rs))
     ret.sort()
     return ret
 

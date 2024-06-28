@@ -88,7 +88,11 @@ async def submit(request):
 
   to_build = await request.json()
   logger.info('%s wants to build %s.', username, to_build)
-  await funcs.submit_build(request.app[KEY_DB], to_build)
+  if any(':' in x for x in to_build):
+    raise aiohttp.web.HTTPBadRequest(text='invalid package name')
+
+  pkgs = [f'{x}:{username}' for x in to_build]
+  await funcs.submit_build(request.app[KEY_DB], pkgs)
   return web.json_response({})
 
 async def init_db(app):
