@@ -78,7 +78,11 @@
   }
 
   function select_confirmed() {
-    dispatch('package', { package: completions[selected_idx] })
+    const pkg = completions[selected_idx]
+    if (!pkg) {
+      return
+    }
+    dispatch('package', { package: pkg })
   }
 
 </script>
