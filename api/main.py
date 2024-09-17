@@ -109,7 +109,7 @@ def setup_app(app):
   f = fernet.Fernet(config.FERNET_KEY)
   setup(app, EncryptedCookieStorage(
     f, path='/triggerabuild/', max_age=86400 * 30,
-    secure=True, samesite='None',
+    secure=True, samesite='Lax',
   ))
 
   app.router.add_get('/triggerabuild/pkglist', pkglist)
