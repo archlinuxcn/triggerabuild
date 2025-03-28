@@ -12,12 +12,12 @@
   onMount(() => {
     const rect = input.getBoundingClientRect()
     ul.style.top = `${rect.height - 1}px`
-    ul.style.width = `${rect.width - 2}px`
+    ul.style.width = `${rect.width}px`
   });
 
   function update_list_width() {
     const rect = input.getBoundingClientRect()
-    ul.style.width = `${rect.width - 2}px`
+    ul.style.width = `${rect.width}px`
   }
 
   function may_complete() {
@@ -137,13 +137,14 @@
   input {
     padding-left: 5px;
     padding-right: 5px;
-    width: min(50em, 100% - 1em);
+    width: min(50em, 100%);
     box-shadow: 0 0 4px var(--color-inactive);
   }
   input,
   ul {
     border-radius: 0;
     border: 1px solid var(--color-inactive);
+    box-sizing: border-box;
   }
   input:focus,
   input:focus ~ ul {
