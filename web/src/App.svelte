@@ -72,7 +72,7 @@
     <p>lilac 状况不明，请呼叫管理员。</p>
   {/if}
   {#if info.queued.length > 0}
-    <p>等待队列：{info.queued.join(", ")}。</p>
+    <p>等候区：{info.queued.join(", ")}。</p>
   {/if}
   {#if info.username}
     <p>
