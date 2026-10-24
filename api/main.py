@@ -10,6 +10,7 @@ from aiohttp_session.cookie_storage import EncryptedCookieStorage
 from cryptography import fernet
 from yarl import URL
 import asyncpg
+import httpx
 
 from . import config
 from . import funcs
@@ -45,7 +46,7 @@ async def github_login(request):
     }
     raise web.HTTPFound(str(url))
 
-  async with aiohttp.ClientSession() as session:
+  async with httpx.AsyncClient(http2=True) as session:
     url = 'https://github.com/login/oauth/access_token'
     data = {
       'client_id': config.CLIENT_ID,
@@ -55,9 +56,9 @@ async def github_login(request):
     headers = {
       'Accept': 'application/json',
     }
-    async with session.post(url, data=data, headers=headers) as res:
-      j = await res.json()
-      access_token = j['access_token']
+    res = await session.post(url, data=data, headers=headers)
+    j = res.json()
+    access_token = j['access_token']
 
     url = 'https://api.github.com/user/orgs'
     headers = {
@@ -65,16 +66,16 @@ async def github_login(request):
       'Authorization': f'Bearer {access_token}',
       'X-GitHub-Api-Version': '2022-11-28',
     }
-    async with session.get(url, headers=headers) as res:
-      j = await res.json()
-      orgs = [o['login'] for o in j]
-      if config.TARGET_ORG not in orgs:
-        raise web.HTTPForbidden()
+    res = await session.get(url, headers=headers)
+    j = res.json()
+    orgs = [o['login'] for o in j]
+    if config.TARGET_ORG not in orgs:
+      raise web.HTTPForbidden()
 
     url = 'https://api.github.com/user'
-    async with session.get(url, headers=headers) as res:
-      j = await res.json()
-      username = j['login']
+    res = await session.get(url, headers=headers)
+    j = res.json()
+    username = j['login']
     session = await new_session(request)
     session['username'] = username
 
