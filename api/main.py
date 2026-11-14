@@ -10,7 +10,7 @@ from aiohttp_session.cookie_storage import EncryptedCookieStorage
 from cryptography import fernet
 from yarl import URL
 import asyncpg
-import httpx
+import httpx2
 
 from . import config
 from . import funcs
@@ -46,7 +46,7 @@ async def github_login(request):
     }
     raise web.HTTPFound(str(url))
 
-  async with httpx.AsyncClient(http2=True) as session:
+  async with httpx2.AsyncClient(http2=True) as session:
     url = 'https://github.com/login/oauth/access_token'
     data = {
       'client_id': config.CLIENT_ID,
